@@ -6,8 +6,10 @@
 
 ## For Mac OS
 You can  run the following command
+
   ```sudo pip install -r requirements_mac.txt```
 
 ## For UNIX OS
 You can run the following command 
+
   ```sudo pip install -r requirements_unix.txt```
