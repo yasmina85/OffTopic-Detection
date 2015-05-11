@@ -1,0 +1,9 @@
+./extract_seed_uris $1
+./download_timemap_wayback $1
+./download_html_wayback $1
+./extract_text_from_html $1
+threshold=$2	
+if [ -z $2 ]; then
+	threshold="0.15"
+fi
+./get_off_topic_using_cosine_similarity $1 $threshold

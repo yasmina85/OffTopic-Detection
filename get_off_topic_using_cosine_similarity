@@ -1,0 +1,1 @@
+python source_code/get_off_topic_using_cosine_similarity.py  $1 $2

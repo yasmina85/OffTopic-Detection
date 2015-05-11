@@ -8,8 +8,10 @@ if __name__ == "__main__":
         if len(sys.argv) > 1:
             collection_id = sys.argv[1]
         else:
-            print "Please enter the collection number"
-
+         print "\nUsage get_off_topic_using_cosine_similarity [collection_id]"
+         print "collection_id: is the id of the collection as it appears on ArchiveIt"
+         sys.exit(1)
+ 
         collection_uri = "https://archive-it.org/collections/"+str(collection_id)+"/?page="
         collection_directory = "data/collection_"+str(collection_id)
         if not os.path.exists(collection_directory):

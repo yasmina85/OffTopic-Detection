@@ -13,3 +13,7 @@ You can  run the following command
 You can run the following command 
 
   ```sudo pip install -r requirements_unix.txt```
+
+
+  ``` javac -classpath "lib/*" ExtractTextFromHTMLFromSeedList.java```
+  ``` java -classpath ".:lib/*" ExtractTextFromHTMLFromSeedList 1582```

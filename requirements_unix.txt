@@ -1,5 +1,0 @@
-nltk
-numpy
-scipy 
-scikit-learn
-BeautifulSoup4

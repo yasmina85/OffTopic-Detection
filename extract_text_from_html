@@ -1,0 +1,2 @@
+javac -classpath "lib/*" source_code/ExtractTextFromHTMLFromSeedList.java
+java -classpath ".:lib/*" source_code.ExtractTextFromHTMLFromSeedList $1
