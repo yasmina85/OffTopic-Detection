@@ -3,17 +3,28 @@
 * Python 2.7+ https://www.python.org/downloads/
 * Install NLTK http://www.nltk.org/install.html
 * Install scikit-learn http://scikit-learn.org/dev/install.html
+* java 1.7+
 
-## For Mac OS
-You can  run the following command
+## For Mac OS/UNIX OS
+To setup the environment 
 
-  ```sudo pip install -r requirements_mac.txt```
+  ```
+  git clone https://github.com/yasmina85/OffTopic-Detection.git
+  cd OffTopic-Detection
+  sudo pip install -r requirements.txt
+  python setup.py
+  ```
 
-## For UNIX OS
-You can run the following command 
-
-  ```sudo pip install -r requirements_unix.txt```
-
-
-  ``` javac -classpath "lib/*" ExtractTextFromHTMLFromSeedList.java```
-  ``` java -classpath ".:lib/*" ExtractTextFromHTMLFromSeedList 1582```
+##To detect the off-topic for a collection
+* First get the collection id from Archive-It
+* Run the following command
+  
+  ```detect_off_topic [collection_id]```
+  
+  For example:
+   
+  ```detect_off_topic 1234``` 
+  
+* Check a list of your off-topic mementos on the following directory after replacing 1234 with your collection_id
+   
+  ```cat data/collection_1234/off_topic_cosine_file.txt```
