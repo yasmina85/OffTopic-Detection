@@ -28,15 +28,15 @@ public class ExtractTextFromHTMLFromSeedList {
 	public static void main(String[] args) throws BoilerpipeProcessingException, IOException, SAXException {
 //		int[] collection_ids = {1475,  694,  2966 ,3015 ,2535 ,335 ,2017 ,1582 ,823 ,639 ,459 , 1945} ;
 			
-			if(args.length < 1){
-				System.out.println("Usage extract_text [Collection_id]");
+			if(args.length < 2){
+				System.out.println("Usage extract_text [timemap_file] [collection_directory]");
 				System.exit(1);
 			}
 			
-		    String collection_id = args[0];
+			String timemap_file = args[0];
+		    String collection_directory = args[1];
 		    String[] types={"default","canola"};
 		    
-			String collection_directory = "data/collection_"+collection_id;
 		    
 		    for (String type : types) {
 			
@@ -48,7 +48,7 @@ public class ExtractTextFromHTMLFromSeedList {
 		
 			    } 
 			    
-				BufferedReader timemap_reader = new BufferedReader(new FileReader(collection_directory+"/timemap.txt"));
+				BufferedReader timemap_reader = new BufferedReader(new FileReader(timemap_file));
 		
 				while(timemap_reader.ready()){
 					

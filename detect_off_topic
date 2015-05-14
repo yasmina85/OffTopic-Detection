@@ -1,9 +1,33 @@
-./extract_seed_uris $1
-./download_timemap_wayback $1
-./download_html_wayback $1
-./extract_text_from_html $1
-threshold=$2	
-if [ -z $2 ]; then
+directory="data"
+while getopts ":d:t:i:r:f:o:h:" opt; do
+  case $opt in
+    d) directory="$OPTARG"
+    ;;
+    t) threshold="$OPTARG"
+    ;;
+    i) collection_id="$OPTARG"
+    ;;
+    r) collection_uri="$OPTARG"
+    ;;
+    f) timemap_file="$OPTARG"
+    ;;
+    o) output_file="$OPTARG"
+    ;;
+    h) html_output=1
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    ;;
+  esac
+done
+
+#for collection; do true; done
+
+if [ -z $threshold ]; then
 	threshold="0.15"
 fi
-./get_off_topic_using_cosine_similarity $1 $threshold
+
+./extract_seed_uris $collection $directory
+#./download_timemap_wayback $1 $directory 
+#./download_html_wayback $1 $directory 
+#./extract_text_from_html $1 $directory 
+#./get_off_topic_using_cosine_similarity $1 $directory $threshold

@@ -5,6 +5,13 @@ import sys
 import time
 from urlparse import urlparse
 
+
+def ensure_dir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+        os.makedirs(d)
+        
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
          collection_id = sys.argv[1]
