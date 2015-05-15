@@ -13,7 +13,7 @@ def download(seed_list_file_name, base_timemap_link_uri , collection_directory):
     timemap_file=open(collection_directory+"/timemap.txt","w")
     seed_list_file = open(seed_list_file_name)
 
-
+    
     for line in seed_list_file:
         seed_record = line.split("\t")
         id = seed_record[0]
@@ -21,6 +21,7 @@ def download(seed_list_file_name, base_timemap_link_uri , collection_directory):
         hostname = urlparse(uri).hostname
         
         print "Downloading timemap using uri "+base_timemap_link_uri+"/"+uri
+
         memento_list = get_mementos_from_timemap(base_timemap_link_uri+"/"+uri)
         
         write_timemap_to_file(id,memento_list,timemap_file)   

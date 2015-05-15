@@ -109,7 +109,7 @@ if __name__ == "__main__":
                 for train_row in cosine_similarity_results_matrix:
                     for idx, test_cell in enumerate(train_row):
                         if test_cell < threshold:
-                            off_topic_cosine_file.write( old_uri_id+"\t"+computed_file_list[idx]+"\n")                    
+                            off_topic_cosine_file.write( old_uri_id+"\t"+str(test_cell)+"\t"+computed_file_list[idx]+"\n")                    
             old_uri_id=uri_id
             file_list=[]
             file_list.append(text_file)

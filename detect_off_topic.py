@@ -10,7 +10,7 @@ import argparse
 import random
 import html_wayback_downloader
 import off_topic_detector_cos_sim
-
+import urlparse
 def ensure_dir(f):
     d = os.path.dirname(f)
     if not os.path.exists(d):
@@ -67,16 +67,17 @@ if args.id !=None:
 elif args.uri !=None:
     # extract from uri
     collection_uri = args.uri
-    o = urlparse(args.r)
+    o = urlparse.urlparse(args.uri)
     collection_id = o.path.split('/')[-1]
     if collection_id == "":
         collection_id = o.path.split('/')[-2]
         
     collection_directory = data_directory+"/collection_"+str(collection_id)
+    seed_list_file = collection_directory+"/seed_list.txt"
     timemap_file_name = collection_directory+"/timemap.txt"
     
     seed_extractor.seed_extractor_from_uri(collection_uri,collection_directory)
-    timemap_downloader.download(seed_list_file, base_timemap_link_uri+str(collection_id), collection_directory)
+    timemap_downloader.download(seed_list_file, base_timemap_link_uri+str(collection_id)+"/timemap/link", collection_directory)
 elif args.timemap_uri !=None:
     # extract directly from timemap
     memento_list = timemap_downloader.get_mementos_from_timemap(args.timemap_uri)

@@ -30,13 +30,13 @@ def download_html_from_wayback( timemap_file_name,collection_directory ) :
         uri = fields[3]
         
         if uri_id != old_uri_id:
-            download_memento_list(uri_id, memento_list, collection_directory)
+            download_memento_list(old_uri_id, memento_list, collection_directory)
             number_of_downloading_mementos=number_of_downloading_mementos+len(memento_list)
             print "Downloading "+str(number_of_downloading_mementos)+" mementos out of "+str(number_of_mementos)
             memento_list=[]
         old_uri_id = uri_id
         memento_list.append( (dt,uri) )
-        time.sleep(2)
+       # time.sleep(2)
     download_memento_list(uri_id, memento_list, collection_directory)
     number_of_downloading_mementos=number_of_downloading_mementos+len(memento_list)
     print "Downloading "+str(number_of_downloading_mementos)+" mementos out of "+str(number_of_mementos)

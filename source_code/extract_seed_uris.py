@@ -5,13 +5,10 @@ import sys
 import os
 
 if __name__ == "__main__":
-        print len(sys.argv)
-        print sys.argv[0]
-        print sys.argv[1]
         
         if len(sys.argv) > 1:
             collection_id = sys.argv[1]
-            data_directory = sys.argv[2]
+            data_directory = "data"
         else:
          print "\nUsage get_off_topic_using_cosine_similarity [collection_id]"
          print "collection_id: is the id of the collection as it appears on ArchiveIt"

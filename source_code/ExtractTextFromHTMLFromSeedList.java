@@ -27,7 +27,7 @@ public class ExtractTextFromHTMLFromSeedList {
 	 */
 	public static void main(String[] args) throws BoilerpipeProcessingException, IOException, SAXException {
 //		int[] collection_ids = {1475,  694,  2966 ,3015 ,2535 ,335 ,2017 ,1582 ,823 ,639 ,459 , 1945} ;
-			
+			System.out.println("Extracting text from the html");
 			if(args.length < 2){
 				System.out.println("Usage extract_text [timemap_file] [collection_directory]");
 				System.exit(1);
@@ -45,21 +45,18 @@ public class ExtractTextFromHTMLFromSeedList {
 				    text_dir = collection_directory+"/text/";
 			    } else if(type.equalsIgnoreCase("canola")){
 				    text_dir = collection_directory+"/text_canola/";
-		
 			    } 
 			    
 				BufferedReader timemap_reader = new BufferedReader(new FileReader(timemap_file));
-		
+
 				while(timemap_reader.ready()){
 					
 					String line = timemap_reader.readLine();
 					String[] fields = line.split("\t");
 					String uri_id = fields[0];
 					String dt = fields[1];
-							
 					File htmlFile = new File(collection_directory+"/html/"+uri_id+"/"+dt+".html");
 					if(!htmlFile.exists()){
-											
 						continue;
 					}
 					
@@ -89,7 +86,6 @@ public class ExtractTextFromHTMLFromSeedList {
 					//if(host.equalsIgnoreCase("facebook")){
 					//	facebookPage = parseFacebookPage(htmlBuffer.toString());
 					//}
-					
 					BufferedWriter writer = new BufferedWriter(new FileWriter(textFile));
 					writer.write(text);
 					writer.close();
