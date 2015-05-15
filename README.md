@@ -38,7 +38,7 @@ To setup the environment
   
   For example:
    
-  ```python detect_off_topic.py -t https://www.archive-it.org/collections/1860```
+  ```python detect_off_topic.py -t https://wayback.archive-it.org/2358/timemap/link/http://hamdeensabahy.com/```
 
 * The default will list the off-topic mementos on the screen, if you want to forward the result to another file
 
