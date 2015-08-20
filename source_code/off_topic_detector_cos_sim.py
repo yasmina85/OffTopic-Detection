@@ -106,8 +106,8 @@ def get_off_topic_memento(timemap_file_name,off_topic_cosine_file, collection_di
     file_list=[]
 
     timemap_list_file = open(timemap_file_name)
-    print "Detecting off-topic mementos"
-    off_topic_cosine_file.write( "Threshold\tmemento_uri\n") 
+    print "Detecting off-topic mementos using Cosine Similarity method."
+    off_topic_cosine_file.write( "Similarity\tmemento_uri\n") 
     for memento_record in timemap_list_file:
           fields = memento_record.split("\t")
           uri_id = fields[0]

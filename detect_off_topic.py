@@ -10,6 +10,7 @@ import argparse
 import random
 import html_wayback_downloader
 import off_topic_detector_cos_sim
+import off_topic_detector_count_words
 import urlparse
 def ensure_dir(f):
     d = os.path.dirname(f)
@@ -22,24 +23,26 @@ parser = argparse.ArgumentParser(description='Detecting off-topic webpages.')
 
 
 parser.add_argument('-d', dest='dir', 
-                   help='A directory is used to download/process the data.')
+                   help='The directory that is used for the downloaded/processed data')
                    
 parser.add_argument('-th', dest='threshold', 
-                   help='The threshold to compute the off-topic pages from 0 to 1')
+                   help='The threshold to compute the off-topic pages between 0 to 1. The default threshold is 0.15')
                 
 parser.add_argument('-o', dest='file', 
-                   help='file path to write the output')
-
+                   help='The file path to write the output')
 
 parser.add_argument('-t', dest='timemap_uri', 
-                   help='a link to timemap (it should be in timemap/link format)')
+                   help='The link of a timemap (it should be in timemap/link format)')
 
 parser.add_argument('-i', dest='id', 
-                   help='collection id as appeared on archive-it')
+                   help='The collection id as appeared on archive-it')
 
 parser.add_argument('-r', dest='uri', 
-                   help='collection uri as appeared on archive-it')
+                   help='The collection uri as appeared on archive-it')
 
+parser.add_argument('-m', dest='mode', default="cosim",
+                   help='The similarity measure: cosim or wcount. The default is cosim.')
+                   
 args = parser.parse_args()
 
 data_directory = 'tmp'
@@ -54,6 +57,13 @@ output_file = sys.stdout
 if args.file != None:
     output_file = open(args.file,'w')
 
+if args.mode != None:
+    mode = args.mode 
+    
+    if mode != "cosim" and mode != "wcount":
+         parser.print_help()
+         sys.exit(1)
+         
 base_timemap_link_uri = "http://wayback.archive-it.org/"
 if args.id !=None:
     # extract from id
@@ -93,7 +103,11 @@ else:
 html_wayback_downloader.download_html_from_wayback(timemap_file_name,collection_directory)      
 os.system('./extract_text_from_html '+timemap_file_name+' '+  collection_directory)
 
-off_topic_detector_cos_sim.get_off_topic_memento(timemap_file_name,output_file,collection_directory,threshold)
-
+if mode == "cosim" :
+    off_topic_detector_cos_sim.get_off_topic_memento(timemap_file_name,output_file,collection_directory,threshold)
+elif mode ==  "wcount":
+    off_topic_detector_count_words.get_off_topic_memento(timemap_file_name,output_file,collection_directory,threshold)
+else:
+    print "Undefined methods"
 
 
